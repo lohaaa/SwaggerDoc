@@ -74,12 +74,12 @@ namespace SwaggerDoc
                     var (responseExample, responseSchema) = GetResponse(operation.Responses);
                     row.AppendLine(title.H(2)); //接口名称
                     row.AppendLine("基本信息".H(3).NewLine()); //基本信息
-                    row.AppendLine($"{"接口地址：".B()}{url}".Li().NewLine());
-                    row.AppendLine($"{"请求方式：".B()}{method}".Li().NewLine());
+                    row.AppendLine($"{"接口地址：".B()} {url}".Li().NewLine());
+                    row.AppendLine($"{"请求方式：".B()} {method}".Li().NewLine());
 
                     if (method is "Post" or "Put")
                     {
-                        row.AppendLine($"{"请求类型：".B()}{ContentType}".Li().NewLine());
+                        row.AppendLine($"{"请求类型：".B()} {ContentType}".Li().NewLine());
                     }
 
                     if (string.IsNullOrWhiteSpace(parameters) == false) //Parameters
@@ -114,7 +114,7 @@ namespace SwaggerDoc
 
                     if (string.IsNullOrWhiteSpace(row.ToString()) == false)
                     {
-                        markDown.AppendLine(row.ToString().Br());
+                        markDown.AppendLine(row.ToString().Br().NewLine());
                     }
                 }
             }
@@ -199,8 +199,14 @@ namespace SwaggerDoc
             else if (apiSchema.IsArray())
             {
                 example = apiSchema.IsBaseTypeArray()
-                    ? new[] {GetDefaultValue(apiSchema.Items.Type)}
-                    : new[] {GetExample(apiSchema.Items.Reference.Id)};
+                    ? new[]
+                    {
+                        GetDefaultValue(apiSchema.Items.Type)
+                    }
+                    : new[]
+                    {
+                        GetExample(apiSchema.Items.Reference.Id)
+                    };
             }
             else if (apiSchema.IsEnum(_schemas))
             {
@@ -228,7 +234,7 @@ namespace SwaggerDoc
         /// <param name="enumType"></param>
         /// <returns></returns>
         private IEnumerable<OpenApiInteger> GetEnum(string enumType) =>
-            GetEnumSchema(enumType).Enum.Select(x => ((OpenApiInteger) x));
+            GetEnumSchema(enumType).Enum.Select(x => ((OpenApiInteger)x));
 
         /// <summary>
         /// 获取枚举 Schema
@@ -259,8 +265,14 @@ namespace SwaggerDoc
                 {
                     example.Add(s,
                         value.IsBaseTypeArray()
-                            ? new[] {GetExample(value.Items.Type)}
-                            : new[] {GetExample(value.Items.Reference.Id)});
+                            ? new[]
+                            {
+                                GetExample(value.Items.Type)
+                            }
+                            : new[]
+                            {
+                                GetExample(value.Items.Reference.Id)
+                            });
                 }
                 else
                 {
@@ -343,7 +355,10 @@ namespace SwaggerDoc
                 else if (value.IsArray())
                 {
                     var arrayKey = value.IsBaseTypeArray() ? value.Items.Type : value.Items.Reference.Id;
-                    obj = new[] {GetFiledDetails(arrayKey, modelType)};
+                    obj = new[]
+                    {
+                        GetFiledDetails(arrayKey, modelType)
+                    };
                 }
                 else if (value.IsEnum(_schemas))
                 {
@@ -397,8 +412,7 @@ namespace SwaggerDoc
         {
             var number = new[]
             {
-                "byte", "decimal", "double", "enum", "float", "int32", "int64", "sbyte", "short", "uint", "ulong",
-                "ushort"
+                "byte", "decimal", "double", "enum", "float", "int32", "int64", "sbyte", "short", "uint", "ulong", "ushort"
             };
             if (number.Any(x => type == x)) return 0;
             switch (type)
