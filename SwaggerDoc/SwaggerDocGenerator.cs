@@ -72,7 +72,7 @@ namespace SwaggerDoc
                     var parameters = GetParameters(operation.Parameters);
                     var (requestExample, requestSchema) = GetRequest(operation.RequestBody);
                     var (responseExample, responseSchema) = GetResponse(operation.Responses);
-                    row.AppendLine(title.H(2)); //接口名称
+                    row.AppendLine(title.H(2).NewLine()); //接口名称
                     if (!string.IsNullOrWhiteSpace(operation.Description))
                     {
                         row.AppendLine(operation.Description.NewLine());
