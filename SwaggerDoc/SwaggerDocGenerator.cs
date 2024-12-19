@@ -73,6 +73,10 @@ namespace SwaggerDoc
                     var (requestExample, requestSchema) = GetRequest(operation.RequestBody);
                     var (responseExample, responseSchema) = GetResponse(operation.Responses);
                     row.AppendLine(title.H(2)); //接口名称
+                    if (!string.IsNullOrWhiteSpace(operation.Description))
+                    {
+                        row.AppendLine(operation.Description.NewLine());
+                    }
                     row.AppendLine("基本信息".H(3).NewLine()); //基本信息
                     row.AppendLine($"{"接口地址：".B()} {url}".Li().NewLine());
                     row.AppendLine($"{"请求方式：".B()} {method}".Li().NewLine());

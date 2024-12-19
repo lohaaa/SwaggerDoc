@@ -14,15 +14,20 @@ namespace Sample.Controllers
         /// <summary>
         /// 获取订单列表
         /// </summary>
+        /// <remarks>
+        /// 这里第一条描述&lt;br/&gt;
+        /// 这里第二条描述&lt;br/&gt;
+        /// 这里第三条描述
+        /// </remarks>
         /// <param name="id">订单号</param>
         /// <param name="request">请求参数</param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public GetOrderListResponse GetOrderDetails(int id, [FromQuery]GetOrderListRequest request)
+        public GetOrderListResponse GetOrderDetails(int id, [FromQuery] GetOrderListRequest request)
         {
             return new GetOrderListResponse();
         }
-        
+
         /// <summary>
         /// 创建订单
         /// </summary>
@@ -33,7 +38,7 @@ namespace Sample.Controllers
         {
             return new CreateOrderResponse();
         }
-        
+
         /// <summary>
         /// 修改订单
         /// </summary>
@@ -45,7 +50,7 @@ namespace Sample.Controllers
         {
             return new UpdateOrderResponse();
         }
-        
+
         /// <summary>
         /// 删除订单
         /// </summary>
