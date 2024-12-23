@@ -419,18 +419,13 @@ namespace SwaggerDoc
                 "byte", "decimal", "double", "enum", "float", "int32", "int64", "sbyte", "short", "uint", "ulong", "ushort"
             };
             if (number.Any(x => type == x)) return 0;
-            switch (type)
+            return type switch
             {
-                case "string":
-                    return "string";
-                case "bool":
-                case "boolean":
-                    return false;
-                case "date-time":
-                    return DateTime.Now;
-                default:
-                    return null;
-            }
+                "string" => "string",
+                "bool" or "boolean" => false,
+                "date-time" => DateTime.Now,
+                _ => null
+            };
         }
 
         /// <summary>
@@ -440,7 +435,7 @@ namespace SwaggerDoc
         /// <returns></returns>
         public async Task<MemoryStream> GetSwaggerDocStreamAsync(string name)
         {
-            await using var stream = new MemoryStream();
+            var stream = new MemoryStream();
             await using var sw = new StreamWriter(stream, Encoding.UTF8);
             var content = GetSwaggerDoc(name);
             await sw.WriteLineAsync(content);
