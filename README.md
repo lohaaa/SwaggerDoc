@@ -60,9 +60,9 @@ Get 访问 https://{localhost}:{port}/doc?swaggerVersion={swaggerVersion}
 
 **Swagger文档**
 
-![api.png](https://github.com/lwc1st/SwaggerDoc/blob/master/Docs/Images/api.png?raw=true)
+![api.png](Docs/Images/api.png?raw=true)
 
 **离线PDF文档**
 
-![swagger.png](https://github.com/lwc1st/SwaggerDoc/blob/master/Docs/Images/swagger.png?raw=true)
+![swagger.png](Docs/Images/swagger.png?raw=true)
 
