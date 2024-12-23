@@ -14,6 +14,11 @@ namespace Samples.Controllers
         /// <summary>
         /// 获取订单列表
         /// </summary>
+        /// <remarks>
+        /// 这里第一条描述&lt;br/&gt;
+        /// 这里第二条描述&lt;br/&gt;
+        /// 这里第三条描述
+        /// </remarks>
         /// <param name="id">订单号</param>
         /// <param name="request">请求参数</param>
         /// <returns></returns>
