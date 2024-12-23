@@ -9,7 +9,7 @@ SwaggerDoc 是基于 Swashbuckle.AspNetCore 类库的离线文档生工具。文
 ### .NET CLI
 
 ```
-dotnet add package SwaggerDoc --version 1.0.1
+dotnet add package SwaggerDoc --version 8.0.1
 ```
 ## 2、Startup配置
 
