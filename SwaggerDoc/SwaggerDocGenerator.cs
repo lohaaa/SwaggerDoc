@@ -78,8 +78,8 @@ namespace SwaggerDoc
                         row.AppendLine(operation.Description.NewLine());
                     }
                     row.AppendLine("基本信息".H(3).NewLine()); //基本信息
-                    row.AppendLine($"{"接口地址：".B()}{url}".Li().NewLine());
-                    row.AppendLine($"{"请求方式：".B()}{method}".Li().NewLine());
+                    row.AppendLine($"{"接口地址：".B()} {url}".Li().NewLine());
+                    row.AppendLine($"{"请求方式：".B()} {method}".Li().NewLine());
 
                     if (method is "Post" or "Put")
                     {
@@ -118,7 +118,7 @@ namespace SwaggerDoc
 
                     if (string.IsNullOrWhiteSpace(row.ToString()) == false)
                     {
-                        markDown.AppendLine(row.ToString().Br());
+                        markDown.AppendLine(row.ToString().Br().NewLine());
                     }
                 }
             }
