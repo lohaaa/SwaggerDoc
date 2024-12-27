@@ -12,10 +12,11 @@
 
 ## 🚀 核心功能
 
-- **支持 Swagger 规范**。
-- **生成 Markdown 格式文档**，便于离线保存和分享。
-- **高度集成**：轻松嵌入 .NET 项目中。
-- **定制化文档生成**：支持自定义 XML 描述、枚举过滤器和文档样式。
+- **支持 Swagger 规范**：完全兼容 Swagger 规范，支持 RESTful API 的标准化描述。
+- **生成 Markdown 格式文档**：便于离线保存和分享，支持转换为 PDF 等多种格式。
+- **支持复杂嵌套对象结构**：能够以 JSON 格式清晰描述复杂的数据结构及其层级关系。
+- **高度集成**：轻松嵌入 .NET 项目中，支持 .NET 6.0 和 .NET 8.0。
+- **定制化文档生成**：支持自定义 XML 描述、枚举过滤器以及文档样式调整，满足个性化需求。
 
 ---
 
@@ -144,8 +145,6 @@ https://{localhost}:{port}/doc?swaggerVersion={swaggerVersion}
    git push origin feature/你的功能描述
    ```
 5. 发起 Pull Request。
-
-详细说明请参考 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ---
 
