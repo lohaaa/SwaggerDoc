@@ -149,16 +149,6 @@ https://{localhost}:{port}/doc?swaggerVersion={swaggerVersion}
 
 ---
 
-## 🧪 测试
-
-本项目使用 [xUnit](https://xunit.net/) 进行单元测试。运行所有单元测试：
-
-```bash
-dotnet test
-```
-
----
-
 ## 📄 开源协议
 
 本项目采用 [MIT License](LICENSE) 进行授权，允许用户自由使用、修改和分发。
