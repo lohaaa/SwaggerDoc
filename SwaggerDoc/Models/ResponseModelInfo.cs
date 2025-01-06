@@ -19,5 +19,10 @@
         /// 可空类型
         /// </summary>
         public bool 可空类型 { get; set; }
+
+        /// <summary>
+        /// 其他信息
+        /// </summary>
+        public OtherInfo 其他信息 { get; set; }
     }
 }

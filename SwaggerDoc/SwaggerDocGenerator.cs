@@ -135,18 +135,35 @@ namespace SwaggerDoc
         {
             string str = null;
             var isFirst = true;
-            var queryTitle = "|参数名称|参数类型|参数位置|描述|".NewLine();
-            queryTitle += "|:----:|:----:|:----:|:----:|".NewLine();
+            var queryTitle = "|参数名称|参数类型|参数位置|描述|其他信息|".NewLine();
+            queryTitle += "|:----:|:----:|:----:|:----:|:----:|".NewLine();
             foreach (var parameter in apiParameters)
             {
                 var queryStr =
-                    $"|{parameter.Name}|{parameter.Schema.Type ?? parameter.Schema.Reference.Id}|{parameter.In}|{parameter.Description}|"
+                    $"|{parameter.Name}|{parameter.Schema.Type ?? parameter.Schema.Reference.Id}|{parameter.In}|{parameter.Description}|{GetParameterOtherInfo(parameter)}|"
                         .NewLine();
                 str += isFirst ? $"{queryTitle}{queryStr}" : queryStr;
                 isFirst = false;
             }
 
             return str;
+        }
+
+        /// <summary>
+        /// 获取参数其他信息
+        /// </summary>
+        /// <param name="parameter">参数</param>
+        /// <returns>参数其他信息</returns>
+        private static string GetParameterOtherInfo(OpenApiParameter parameter)
+        {
+            var otherInfoStr = string.Empty;
+            otherInfoStr += parameter.Required ? $"是否必传：`{parameter.Required.ToString()}`".Br() : string.Empty;
+            otherInfoStr += parameter.Schema.MinLength.HasValue ? $"最小长度：`{parameter.Schema.MinLength.Value}`".Br() : string.Empty;
+            otherInfoStr += parameter.Schema.MaxLength.HasValue ? $"最大长度：`{parameter.Schema.MaxLength.Value}`".Br() : string.Empty;
+            otherInfoStr += parameter.Schema.Minimum.HasValue ? $"最小值：`{parameter.Schema.Minimum.Value}`".Br() : string.Empty;
+            otherInfoStr += parameter.Schema.Maximum.HasValue ? $"最大值：`{parameter.Schema.Maximum.Value}`".Br() : string.Empty;
+            otherInfoStr += !string.IsNullOrWhiteSpace(parameter.Schema.Pattern) ? $"格式校验：`{parameter.Schema.Pattern}`" : string.Empty;
+            return otherInfoStr;
         }
 
         /// <summary>
@@ -388,7 +405,15 @@ namespace SwaggerDoc
                         参数类型 = obj,
                         描述 = value.Description,
                         是否必传 = schema.Required.Any(x => x == s),
-                        可空类型 = value.Nullable
+                        可空类型 = value.Nullable,
+                        其他信息 = new OtherInfo
+                        {
+                            最小长度 = value.MinLength,
+                            最大长度 = value.MaxLength,
+                            格式校验 = value.Pattern,
+                            最小值 = value.Minimum,
+                            最大值 = value.Maximum,
+                        }
                     };
                     properties.Add(s, requestModelInfo);
                 }
@@ -398,7 +423,15 @@ namespace SwaggerDoc
                     {
                         参数类型 = obj,
                         描述 = value.Description,
-                        可空类型 = value.Nullable
+                        可空类型 = value.Nullable,
+                        其他信息 = new OtherInfo
+                        {
+                            最小长度 = value.MinLength,
+                            最大长度 = value.MaxLength,
+                            格式校验 = value.Pattern,
+                            最小值 = value.Minimum,
+                            最大值 = value.Maximum,
+                        }
                     };
                     properties.Add(s, responseModelInfo);
                 }

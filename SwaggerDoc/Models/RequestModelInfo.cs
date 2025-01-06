@@ -24,5 +24,10 @@
         /// 是否必传
         /// </summary>
         public bool 是否必传 { get; set; }
+
+        /// <summary>
+        /// 其他信息
+        /// </summary>
+        public OtherInfo 其他信息 { get; set; }
     }
 }
